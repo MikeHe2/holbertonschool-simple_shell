@@ -7,12 +7,14 @@
  * 
 */
 
-int main()
+int main(int argc __attribute__((unused)), char *argv[])
 {
 	ssize_t read;
-	char *buffer = NULL, *token;
+	char *buffer, *token;
 	char *delim = " ";
 	size_t size = 0;
+
+	buffer = argv[0];
 
 	while(1)
 	{
