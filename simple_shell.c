@@ -29,7 +29,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 		token = strtok(buffer, delim);
 		while (token != NULL)
 		{
-			printf("%s\n", token);
+			get_command(token);
 			token = strtok(NULL, delim);
 		}
 		
