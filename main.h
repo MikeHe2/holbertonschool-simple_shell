@@ -10,6 +10,6 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 
-char* get_command(char *cmd_name);
+char* _strtok(char *str);
 
 #endif
