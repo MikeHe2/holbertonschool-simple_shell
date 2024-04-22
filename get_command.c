@@ -17,7 +17,7 @@ char* get_command(char *cmd)
     char *full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
     sprintf(full_path, "%s/%s", locations[i], cmd);
     if (access(full_path, X_OK) == 0)
-		{
+	{
       return full_path;
     }
     free(full_path);
