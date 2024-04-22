@@ -1,9 +1,9 @@
 #include "main.h" 
 
 /**
+ * main - makes a prompt and waits for command
  * 
- * 
- * 
+ * Return: exits the prompt
  * 
 */
 
@@ -41,7 +41,7 @@ int main(void) {
       } else {
         printf("%s: command not found\n", buffer);
       }
-      free(path); // Free memory allocated by find_executable (if successful)
+      free(path);
       exit(EXIT_FAILURE);
     } else {
       int status;
