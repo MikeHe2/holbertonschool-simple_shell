@@ -10,7 +10,8 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 
-char* _strtok(char *str);
+#define MAX_ARGS 64
+
+char* get_command(char *cmd_name);
 
 #endif
-
