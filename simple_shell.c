@@ -1,7 +1,6 @@
 #include "main.h" 
 
 /**
-<<<<<<< HEAD
  * main - makes a prompt and waits for command
  * 
  * Return: exits the prompt
@@ -21,7 +20,7 @@ int main(void) {
     printf("$ ");
     read = getline(&buffer, &size, stdin);
     if (read == -1)
-	{
+		{
       perror("C ya later! Don't forget your coffee!");//ctrl + d
       exit(EXIT_FAILURE);
     }
@@ -55,40 +54,3 @@ int main(void) {
 
   return EXIT_SUCCESS;
 }
-=======
- * 
- * 
- * 
- * 
-*/
-
-int main(int argc __attribute__((unused)), char *argv[])
-{
-	ssize_t read;
-	char *buffer, *token;
-	char *delim = " ";
-	size_t size = 0;
-
-	buffer = argv[0];
-
-	while(1)
-	{
-		printf("$ ");
-		read = getline(&buffer, &size, stdin);
-		if (read == -1)
-		{
-			printf("C ya later, don't forget your coffee!\n");
-			free(buffer);
-			return(0);
-		}
-		token = strtok(buffer, delim);
-		while (token != NULL)
-		{
-			get_command(token);
-			token = strtok(NULL, delim);
-		}
-		
-	}
-	return (0);
-}
->>>>>>> eab809b (added execution in get command and integrated it to simple shell)
