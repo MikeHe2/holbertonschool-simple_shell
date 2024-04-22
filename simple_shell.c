@@ -6,31 +6,50 @@
  * 
  * 
 */
+int main(void) {
+  char *buffer = NULL;
+  char *args[2];
+  ssize_t bytes_read, read;
+  pid_t child;
+  size_t size = 0;
 
-int main()
-{
-	ssize_t read;
-	char *buffer = NULL, *token;
-	char *delim = " ";
-	size_t size = 0;
+  printf("Welcome to simple_shell use it if you dare :)\n");
 
-	while(1)
+  while (1) {
+    printf("$ ");
+    read = getline(&buffer, &size, stdin);
+    if (read == -1)
 	{
-		printf("$ ");
-		read = getline(&buffer, &size, stdin);
-		if (read == -1)
-		{
-			printf("C ya later, don't forget your coffee!\n");
-			free(buffer);
-			return(0);
-		}
-		token = strtok(buffer, delim);
-		while (token != NULL)
-		{
-			get_command(token);
-			token = strtok(NULL, delim);
-		}
+      perror("C ya later! Don't forget your coffee!");//ctrl + d
+      exit(EXIT_FAILURE);
+    }
 
-	}
-	return (0);
+    buffer[read - 1] = '\0';
+
+    args[0] = buffer;
+    args[1] = NULL;
+
+    child = fork();
+    if (child == -1) {
+      perror("fork not succesful");
+      exit(EXIT_FAILURE);
+    } else if (child == 0) {
+      char *path = get_command(args[0]);
+      if (path != NULL) {
+        execve(path, args, NULL);
+      } else {
+        printf("%s: command not found\n", buffer);
+      }
+      free(path); // Free memory allocated by find_executable (if successful)
+      exit(EXIT_FAILURE);
+    } else {
+      int status;
+      if (waitpid(child, &status, 0) == -1) {
+        perror("waitpid");
+        exit(EXIT_FAILURE);
+      }
+    }
+  }
+
+  return EXIT_SUCCESS;
 }
