@@ -4,7 +4,7 @@
  * main - makes a prompt and waits for command
  *
  * Return: exits the prompt
- *
+ * getenv() google it
 */
 
 int main(void)
@@ -14,6 +14,7 @@ int main(void)
 	ssize_t bytes_read, read;
 	pid_t child;
 	size_t size = 0;
+	extern char **environ;
 
 	printf("Welcome to simple_shell use it if you dare :)\n");
 
