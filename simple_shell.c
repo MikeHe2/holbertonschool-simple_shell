@@ -2,7 +2,7 @@
 
 /**
  * main - makes a prompt and waits for command
- *
+ * check if it handles empty line
  * Return: exits the prompt
  * getenv() google it
 */
@@ -10,11 +10,13 @@
 int main(void)
 {
 	char *buffer = NULL;
-	char *args[2];
-	ssize_t bytes_read, read;
+	char *args[64];
+	ssize_t read;
 	pid_t child;
 	size_t size = 0;
 	extern char **environ;
+	int i = 0, status = 0;
+	char *token;
 
 	printf("Welcome to simple_shell use it if you dare :)\n");
 
@@ -27,11 +29,21 @@ int main(void)
 			perror("C ya later! Don't forget your coffee!");//ctrl + d
 			exit(EXIT_FAILURE);
 		}
+		else if (read == 0)
+		{
+			printf("\n");
+			break;
+		}
 
 		buffer[read - 1] = '\0';
 
-		args[0] = buffer;
-		args[1] = NULL;
+		
+		token = strtok(buffer, " ");
+    	while (token != NULL && i < sizeof(args) / sizeof(args[0]) - 1)
+		{
+			args[i++] = token;
+			token = strtok(NULL, " ");
+		}
 		if (strcmp(args[0], "exit") == 0)
 		{
 			break;
@@ -61,7 +73,6 @@ int main(void)
 		}
 		else
 		{
-			int status;
 			if (waitpid(child, &status, 0) == -1)
 			{
 				perror("waitpid");
