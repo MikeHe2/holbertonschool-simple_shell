@@ -6,6 +6,7 @@
  * Return: exits the prompt
  * 
 */
+
 int main(void) {
   char *buffer = NULL;
   char *args[2];
