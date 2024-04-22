@@ -1,28 +1,27 @@
 #include "main.h"
 
 /**
+ * get_command - find the path to the command in the input given
  * 
+ * @cmd: is the args[0] in main function
  * 
- * 
- * 
- * 
+ * Return: full path if succesful NULL in failed
 */
 
-char* get_command(char *cmd_name) {
-  // Check for the command in common locations (modify as needed)
+char* get_command(char *cmd) 
+{
   static char *locations[] = {"/bin", "/usr/bin", NULL};
 
-  for (int i = 0; locations[i] != NULL; i++) {
-    char *full_path = malloc(strlen(locations[i]) + strlen(cmd_name) + 2);
-    sprintf(full_path, "%s/%s", locations[i], cmd_name);
-    if (access(full_path, X_OK) == 0) {
+  for (int i = 0; locations[i] != NULL; i++)
+  {
+    char *full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
+    sprintf(full_path, "%s/%s", locations[i], cmd);
+    if (access(full_path, X_OK) == 0)
+	{
       return full_path;
     }
     free(full_path);
   }
 
-  // Check environment variable PATH (more complex parsing needed)
-  // ...
-
-  return NULL; // Executable not found
+  return NULL;
 }
