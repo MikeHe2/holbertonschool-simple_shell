@@ -11,8 +11,9 @@
 char* get_command(char *cmd) 
 {
 	static char *locations[] = {"/bin", "/usr/bin", NULL};
-
-	for (int i = 0; locations[i] != NULL; i++)
+	int i;
+	
+	for (i = 0; locations[i] != NULL; i++)
 	{
 		char *full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
 		sprintf(full_path, "%s/%s", locations[i], cmd);
@@ -22,5 +23,6 @@ char* get_command(char *cmd)
 		}
 		free(full_path);
 	}
+
 	return NULL;
 }
