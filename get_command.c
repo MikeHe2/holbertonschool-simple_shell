@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "shell.h"
 #include <stdlib.h>
 #include <string.h>
