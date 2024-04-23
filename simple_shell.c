@@ -25,7 +25,7 @@ int main(void)
 		perror("Failed allocating memory");
 		exit(EXIT_FAILURE);
 	}
-    printf("Welcome to simple_shell use it if you dare :)\n");
+    //printf("Welcome to simple_shell use it if you dare :)\n");
 
     while (1)
     {
@@ -36,7 +36,7 @@ int main(void)
         {
             free(buffer);
 			free(args);
-            perror("C ya later! Don't forget your coffee!");
+            //perror("C ya later! Don't forget your coffee!");
             exit(EXIT_FAILURE);
         }
 
