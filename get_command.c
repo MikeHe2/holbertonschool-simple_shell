@@ -28,6 +28,7 @@ if (strncmp(cmd, "/bin/", 5) == 0)
 		{
 			return full_path;
 		}
+		free(full_path);
 	}
 	free(full_path);
 	return NULL;
