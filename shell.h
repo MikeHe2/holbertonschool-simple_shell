@@ -10,6 +10,7 @@
 
 #define BUFFER_SIZE 1024
 
-int main(void);
+int main(int argc, char **argv, char **envp);
+char *get_command(const char *command);
 
 #endif /* SHELL_H */
