@@ -10,19 +10,25 @@
 
 char* get_command(char *cmd) 
 {
-	static char *locations[] = {"/bin", "/usr/bin", NULL};
+	static char *locations[] = {"/bin/", "/usr/bin", NULL};
 	int i;
-	
+	char *full_path;
+if (strncmp(cmd, "/bin/", 5) == 0)
+		{
+			full_path = malloc(strlen(cmd) + 1);
+			strcpy(full_path, cmd);
+			return(full_path);
+		}
 	for (i = 0; locations[i] != NULL; i++)
 	{
-		char *full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
-		sprintf(full_path, "%s/%s", locations[i], cmd);
+			full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
+			sprintf(full_path, "%s%s", locations[i], cmd);
+
 		if (access(full_path, X_OK) == 0)
 		{
 			return full_path;
 		}
-		free(full_path);
 	}
-
+	free(full_path);
 	return NULL;
 }

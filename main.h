@@ -12,6 +12,6 @@
 
 #define MAX_ARGS 64
 
-char* get_command(char *cmd_name);
+char* get_command(char *cmd);
 
 #endif

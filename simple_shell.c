@@ -67,7 +67,7 @@ int main(void)
         }
         else if (child == 0)
         {
-            char *path = get_command(args[0]);
+				char *path = get_command(args[0]);
 
             if (path != NULL)
             {
