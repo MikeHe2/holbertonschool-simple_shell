@@ -45,14 +45,17 @@ int main(void)
 		buffer[read - 1] = '\0';
 
 		token = strtok(buffer, " \t");
-		if (token == NULL)
-		{
-			continue;
-		}
 		while (token != NULL && i < MAX_ARGS - 1)
 		{
-			args[i++] = token;
-			token = strtok(NULL, " \t");
+			args[i] = strdup(token);
+			if (args[i] == NULL)
+			{
+				perror("Failed allocating memory");
+				exit(EXIT_FAILURE);
+			}
+			i++;
+
+			token = strsep(&buffer, " \t");
 		}
 		args[i] = NULL;
 
@@ -60,7 +63,7 @@ int main(void)
 		{
 			free(buffer);
 			free(args);
-			break;
+			return (2);
 		}
 
 		child = fork();
