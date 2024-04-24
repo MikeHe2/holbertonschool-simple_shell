@@ -64,8 +64,8 @@ int main(void)
         if (child == -1)
         {
             perror("fork not successful");
-            exit(EXIT_FAILURE);
 			free(args);
+            exit(EXIT_FAILURE);
         }
         else if (child == 0)
         {
@@ -74,23 +74,24 @@ int main(void)
             if (path != NULL)
             {
                 execve(path, args, environ);
-                perror(buffer);
+                perror("execve");
+				exit(EXIT_FAILURE);
             }
             else
             {
                 printf("%s: command not found\n", buffer);
+            	free(path);
+            	exit(EXIT_FAILURE);
             }
-            free(path);
-            exit(EXIT_SUCCESS);
         }
         else
         {
-            if (waitpid(child, &status, 0) == -1)
+            if (wait(&status) == -1)
             {
                 perror("waitpid");
                 exit(EXIT_SUCCESS);
             }
         }
     }
-    return EXIT_SUCCESS;
+    return (0);
 }
