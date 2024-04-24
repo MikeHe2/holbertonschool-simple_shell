@@ -7,29 +7,36 @@
  *
  * Return: full path if succesful NULL in failed
 */
-
 char* get_command(char *cmd) 
 {
-	static char *locations[] = {"/bin/", "/usr/bin", NULL};
-	int i;
-	char *full_path;
-if (strncmp(cmd, "/bin/", 5) == 0)
-		{
-			full_path = malloc(strlen(cmd) + 1);
-			strcpy(full_path, cmd);
-			return(full_path);
-		}
-	for (i = 0; locations[i] != NULL; i++)
-	{
-			full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
-			sprintf(full_path, "%s%s", locations[i], cmd);
+    static char *locations[] = {"/bin/", "/usr/bin/", NULL};
+    int i;
+    char *full_path;
 
-		if (access(full_path, X_OK) == 0)
-		{
-			return full_path;
-		}
-		free(full_path);
-	}
-	free(full_path);
-	return NULL;
+    if (access(cmd, X_OK) == 0)
+    {
+        full_path = malloc(strlen(cmd) + 1);
+        strcpy(full_path, cmd);
+        return full_path;
+    }
+
+    for (i = 0; locations[i] != NULL; i++)
+    {
+        full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
+        if (full_path == NULL)
+        {
+            perror("Failed allocating memory");
+            exit(EXIT_FAILURE);
+        }
+
+        sprintf(full_path, "%s%s", locations[i], cmd);
+
+        if (access(full_path, X_OK) == 0)
+        {
+            return full_path;
+        }
+
+        free(full_path);
+    }
+    return NULL;
 }
