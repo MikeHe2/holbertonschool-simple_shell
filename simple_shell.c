@@ -47,8 +47,14 @@ int main(void)
 		token = strtok(buffer, " \t");
 		while (token != NULL && i < MAX_ARGS - 1)
 		{
-			args[i++] = token;
-			token = strtok(NULL, " \t");
+			args[i] = strdup(token);
+			if (args[i] == NULL)
+			{
+				perror("Failed allocating memory");
+				exit(EXIT_FAILURE);
+			}
+			i++;
+			token = strsep(&buffer, " \t");
 		}
 		args[i] = NULL;
 
