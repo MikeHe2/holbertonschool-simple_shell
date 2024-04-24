@@ -7,7 +7,7 @@
  *
  * Return: full path if succesful NULL in failed
 */
-char* get_command(char *cmd) 
+char *get_command(char *cmd)
 {
     static char *locations[] = {"/bin/", "/usr/bin/", NULL};
     int i;
