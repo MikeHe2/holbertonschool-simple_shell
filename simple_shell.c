@@ -60,7 +60,7 @@ int main(void)
 		{
 			free(buffer);
 			free(args);
-			return (2);
+			return (0);
 		}
 
 		child = fork();
