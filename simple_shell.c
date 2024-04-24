@@ -37,7 +37,7 @@ int main(void)
         {
             free(buffer);
 			free(args);
-            exit(EXIT_FAILURE);
+            break;
         }
 
         if (read == 1 && buffer[0] == '\n')
