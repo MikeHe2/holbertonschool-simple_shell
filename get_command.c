@@ -33,10 +33,10 @@ char *get_command(char *cmd)
 
 		if (access(full_path, X_OK) == 0)
 		{
-			return full_path;
+			return (full_path);
 		}
 
 		free(full_path);
 	}
-	return NULL;
+	return (NULL);
 }
