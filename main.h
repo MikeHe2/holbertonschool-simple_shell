@@ -13,5 +13,7 @@
 #define MAX_ARGS 64
 
 char* get_command(char *cmd);
+extern char **environ;
+
 
 #endif

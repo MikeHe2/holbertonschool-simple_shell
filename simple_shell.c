@@ -6,7 +6,6 @@
  * Return: exits the prompt
  *
  */
-extern char **environ;
 
 int main(void)
 {
@@ -19,7 +18,7 @@ int main(void)
 	char *token;
 	int i;
 
-	args = malloc(MAX_ARGS * sizeof(char*));
+	args = malloc(MAX_ARGS * sizeof(char *));
 	if (args == NULL)
 	{
 		perror("Failed allocating memory");
