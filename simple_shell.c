@@ -41,7 +41,7 @@ int main(void)
 
 		if (read == 1 && buffer[0] == '\n')
 			continue;
-
+i
 		buffer[read - 1] = '\0';
 
 		token = strtok(buffer, " \t");
@@ -60,7 +60,7 @@ int main(void)
 		{
 			free(buffer);
 			free(args);
-			return (0);
+			break;
 		}
 
 		child = fork();
