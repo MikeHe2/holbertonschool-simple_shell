@@ -1,4 +1,4 @@
-#define MAIN_H
+#ifndef MAIN_H
 #define MAIN_H
 
 #include <stdio.h>
@@ -12,6 +12,6 @@
 
 #define MAX_ARGS 64
 
-char* get_command(char *cmd_name);
+char* get_command(char *cmd);
 
 #endif
