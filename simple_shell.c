@@ -29,7 +29,7 @@ int main(void)
     while (1)
     {
 		if (isatty(0))
-        	printf("$ ");
+        		printf("$ ");
 
         i = 0;
         read = getline(&buffer, &size, stdin);
