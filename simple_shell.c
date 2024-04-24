@@ -41,7 +41,7 @@ int main(void)
 
 		if (read == 1 && buffer[0] == '\n')
 			continue;
-i
+
 		buffer[read - 1] = '\0';
 
 		token = strtok(buffer, " \t");
