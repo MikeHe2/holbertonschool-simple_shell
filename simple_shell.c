@@ -6,6 +6,7 @@
  * Return: exits the prompt
  *
  */
+extern char **environ;
 
 int main(void)
 {
@@ -14,7 +15,6 @@ int main(void)
     ssize_t read;
     pid_t child;
     size_t size = 0;
-    extern char **environ;
     int status = 0;
     char *token;
 	int i;
@@ -73,9 +73,12 @@ int main(void)
 
             if (path != NULL)
             {
-                execve(path, args, environ);
-                perror("execve");
-				exit(EXIT_FAILURE);
+				if (access(path, X_OK) == 0)
+				{
+                	execve(path, args, environ);
+                	perror("execve");
+					exit(EXIT_FAILURE);
+				}
             }
             else
             {
