@@ -45,6 +45,10 @@ int main(void)
 		buffer[read - 1] = '\0';
 
 		token = strtok(buffer, " \t");
+		if (token == NULL)
+		{
+			continue;
+		}
 		while (token != NULL && i < MAX_ARGS - 1)
 		{
 			args[i++] = token;
