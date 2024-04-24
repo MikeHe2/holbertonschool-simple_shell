@@ -28,7 +28,9 @@ int main(void)
 
     while (1)
     {
-        printf("$ ");
+		if (isatty(0))
+        	printf("$ ");
+
         i = 0;
         read = getline(&buffer, &size, stdin);
         if (read == -1)
@@ -79,14 +81,14 @@ int main(void)
                 printf("%s: command not found\n", buffer);
             }
             free(path);
-            exit(EXIT_FAILURE);
+            exit(EXIT_SUCCESS);
         }
         else
         {
             if (waitpid(child, &status, 0) == -1)
             {
                 perror("waitpid");
-                exit(EXIT_FAILURE);
+                exit(EXIT_SUCCESS);
             }
         }
     }
