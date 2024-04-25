@@ -62,15 +62,6 @@ int main(void)
 			free(args);
 			break;
 		}
-		
-		if (strcmp(args[0], "ls") == 0)
-		{
-			if (execvp("ls", args) == -1)
-			{
-				perror("execvp");
-				exit(EXIT_FAILURE);
-			}
-		}
 
 		child = fork();
 		if (child == -1)
