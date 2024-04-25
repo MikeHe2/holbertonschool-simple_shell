@@ -1,12 +1,15 @@
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 
-int pat_main(int argc, char *argv[])
+int path_main(int argc, char *argv[])
 {
-	int i;
-	char *ls_paths[] = {"/bin/ls", "/usr/bin/ls", NULL};
+	if (getenv("PATH") == NULL || strcmp(getenv("PATH"), "") == 0)
+	{
+		fprintf(stderr, "PATH is empty. Command execution is not possible.\n");
+		return (EXIT_FAILURE);
+	}
 
 	if (argc < 2)
 	{
@@ -14,21 +17,27 @@ int pat_main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; ls_paths[i] != NULL; i++)
+	if (strcmp(argv[1], "ls") == 0)
 	{
-		if (access(ls_paths[i], X_OK) == 0)
+		if (access("/bin/ls", X_OK) == 0)
 		{
-			argv[0] = ls_paths[i];
-			if (execvp(ls_paths[i], argv) == -1)
+			if (execvp("/bin/ls", argv) == -1)
 			{
 				perror("execvp");
 				exit(EXIT_FAILURE);
 			}
 		}
+		else
+		{
+			fprintf(stderr, "/bin/ls command not found\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "Command not supported: %s\n", argv[1]);
+		exit(EXIT_FAILURE);
 	}
 
-	fprintf(stderr, "ls command not found\n");
-	exit(EXIT_FAILURE);
-
-	return 0;
+	return (0);
 }
