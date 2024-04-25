@@ -12,7 +12,7 @@ This is a simple shell written in C language.  This simple shell emulates a UNIX
 -   No more than 5 functions per file
 -   All your header files should be include guarded
  
-## Allowed funcitons
+## Allowed functions
 -   all functions from string.h
 -   `access` (man 2 access)
 -   `chdir` (man 2 chdir)
@@ -60,7 +60,7 @@ To execute the simple shell:
 ``` ./hsh ```
 
 ## Example of simple shell
-This the simple shell in interactive mode:
+This is the simple shell in interactive mode:
 ```
 $ ls
 file1  file2  file3  hsh
