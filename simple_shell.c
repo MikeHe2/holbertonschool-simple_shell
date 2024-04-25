@@ -72,23 +72,23 @@ int main(void)
 		}
 		else if (child == 0)
 		{
-				char *path = get_command(args[0]);
+			char *path = get_command(args[0]);
 
-				if (path != NULL)
-				{
-				if (access(path, X_OK) == 0)
-				{
-					execve(path, args, environ);
-					perror("execve");
-					exit(EXIT_FAILURE);
-				}
-				}
-				else
-				{
-					printf("%s: command not found\n", buffer);
-					free(path);
-					exit(EXIT_FAILURE);
-				}
+			if (path != NULL)
+			{
+			if (access(path, X_OK) == 0)
+			{
+				execve(path, args, environ);
+				perror("execve");
+				exit(EXIT_FAILURE);
+			}
+			}
+			else
+			{
+				printf("%s: command not found\n", buffer);
+				free(path);
+				exit(EXIT_FAILURE);
+			}
 		}
 		else
 		{
