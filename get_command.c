@@ -5,7 +5,7 @@
  *
  * @cmd: is the args[0] in main function
  *
- * Return: full path if succesful NULL in failed
+ * Return: full path if successful, NULL if failed
 */
 char *get_command(char *cmd)
 {
@@ -17,12 +17,12 @@ char *get_command(char *cmd)
 	{
 		full_path = malloc(strlen(cmd) + 1);
 		strcpy(full_path, cmd);
-		return (full_path);
+		return full_path;
 	}
 
 	for (i = 0; locations[i] != NULL; i++)
 	{
-		full_path = malloc(strlen(locations[i]) + strlen(cmd) + 2);
+		full_path = malloc(strlen(locations[i]) + strlen(cmd) + 1);
 		if (full_path == NULL)
 		{
 			perror("Failed allocating memory");
@@ -33,10 +33,10 @@ char *get_command(char *cmd)
 
 		if (access(full_path, X_OK) == 0)
 		{
-			return (full_path);
+			return full_path;
 		}
 
 		free(full_path);
 	}
-	return (NULL);
+	return NULL;
 }
