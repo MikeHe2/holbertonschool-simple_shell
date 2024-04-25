@@ -1,6 +1,6 @@
 # Simple Shell
 ## Description
-This is a simple shell written in C language.  This simple shell emulates a UNIX shell, handling the basics functionalities and commands with arguments.  It works in interactive and non interactive mode.
+This is a simple shell written in C language.  This simple shell emulates a UNIX shell, handling the basics functionalities and commands with arguments.  It works in interactive and non interactive mode. This project was the last task required to pass the first trimester. It had requirements and some parameters we had to follow in order to achieve our goal. The parameters were as follows:
 
 ## General requirements
 -   Allowed editors: `vi`, `vim`, `emacs`
